@@ -1,11 +1,20 @@
-import { useState } from "react";
-import { Button, StyleSheet, Text, TextInput, View } from "react-native";
+import { useEffect, useState } from "react";
+import { Button, StyleSheet, Text, View } from "react-native";
 
 const HomeDrawer = ({ navigation }) => {
   const [name, setName] = useState("");
+  const value = Math.random() * 10000;
+
+  useEffect(() => {
+    const unsuscribe = navigation.addListener("focus", () => {
+      console.log("Home");
+    });
+    return unsuscribe;
+  }, [navigation]);
+
   return (
     <View style={styles.container}>
-      <Text>Home Screen</Text>
+      <Text>Home Screen: {value}</Text>
       <Button
         title="Go to Details"
         onPress={() => {
